@@ -1,0 +1,71 @@
+unit UAtualizacoes;
+
+interface
+  type TAtualizacoes = Class
+     private
+       procedure alteraVersao(versao: string);
+       function atualizar1_0: boolean;
+       function atualizar1_0_1: boolean;
+     public
+       procedure atualizar;
+  End;
+implementation
+
+uses UDM, System.SysUtils;
+
+
+procedure TAtualizacoes.alteraVersao(versao: string);
+begin
+  with dm.config do
+  begin
+    Refresh;
+    Filter := 'id = 2';
+    Edit;
+    FieldByName('valor').AsString := versao;
+    Post;
+    Refresh;
+    Filter := 'id = 2';
+    dm.config2 := FieldByName('valor').AsString;
+  end;
+end;
+
+function TAtualizacoes.atualizar1_0: boolean;
+begin
+  with dm.qry_atualizacoes do
+  begin
+    close;
+    sql.Clear;
+    sql.Add('INSERT INTO config ( id, descri, valor) VALUES ( 2,''Versao'',''1.0''))');
+    open;
+  end;
+  alteraVersao('1.0');
+end;
+
+function TAtualizacoes.atualizar1_0_1: boolean;
+begin
+  with dm.qry_atualizacoes do
+  begin
+    close;
+    sql.Clear;
+    sql.Add('INSERT INTO config ( id, descri, valor) VALUES ( 2,''Versao'',''1.0''))');
+    open;
+  end;
+  alteraVersao('1.01');
+end;
+
+procedure TAtualizacoes.atualizar;
+// PRIMEIRO NUMERO SE REFERE AO ANO EX: 2018 = 1,
+// SEGUNDO NUMERO A INSERCAO DE FUNCIONALIDADES,
+// TERCEIRO NUMERO A CORREÇÃO DE BUGS,
+// EX: 1.223 : ANO 2018 - DUAS NOVAS FUNCIONALIDAS - 23 BUGS CORRIGIDOS
+begin
+  if dm.config2 = '' then
+    if atualizar1_0 then
+      dm.mostraMsg('Erro ao atualizar para a versão 1.0');
+//  if 1.01 > strtofloat(dm.config2) then
+//    if atualizar1_0_1 then
+//      dm.mostraMsg('Erro ao atualizar para a versão 1.01');
+
+end;
+
+end.

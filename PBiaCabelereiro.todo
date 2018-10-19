@@ -1,0 +1,10 @@
+{TODO :
+Confirmar se as buscas de cliente da tela de venda e de serviços
+os filters não estão atrapalhando as telas de cadastro}
+{TODO : Arrumar o tab_order de todas as janelas}
+{TODO : Relatorios}
+{TODO : Modulo de Vendas}
+{DONE : Modulo de controle de Cliente}
+{DONE : Modulo de controle de Tipo de Serviço}
+{DONE : Modulo de controle de Servico}
+{DONE : Modulo de controle de Colaboradores}

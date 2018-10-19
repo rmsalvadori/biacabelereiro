@@ -1,0 +1,18 @@
+program PBiaCabelereiro;
+
+uses
+  Vcl.Forms,
+  UPrincipal in 'units\UPrincipal.pas' {Form1},
+  UDM in 'units\UDM.pas' {DataModule1: TDataModule},
+  UClientes in 'units\UClientes.pas' {FrmClientes};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TFrmClientes, FrmClientes);
+  Application.Run;
+end.
