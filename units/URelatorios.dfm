@@ -4,7 +4,7 @@ object FrmRelatorios: TFrmRelatorios
   BorderStyle = bsDialog
   Caption = 'Relat'#243'rios'
   ClientHeight = 341
-  ClientWidth = 318
+  ClientWidth = 343
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,20 +20,20 @@ object FrmRelatorios: TFrmRelatorios
   object Panel3: TPanel
     Left = 0
     Top = 76
-    Width = 318
+    Width = 345
     Height = 269
     TabOrder = 0
     object Panel1: TPanel
-      Left = 24
-      Top = 16
-      Width = 281
+      Left = 14
+      Top = 18
+      Width = 316
       Height = 233
       TabOrder = 0
       DesignSize = (
-        281
+        316
         233)
       object Label1: TLabel
-        Left = 55
+        Left = 65
         Top = 11
         Width = 175
         Height = 18
@@ -46,7 +46,7 @@ object FrmRelatorios: TFrmRelatorios
         ParentFont = False
       end
       object Label2: TLabel
-        Left = -3
+        Left = 25
         Top = 97
         Width = 74
         Height = 18
@@ -59,7 +59,7 @@ object FrmRelatorios: TFrmRelatorios
         ParentFont = False
       end
       object Label3: TLabel
-        Left = 2
+        Left = 30
         Top = 141
         Width = 69
         Height = 18
@@ -72,7 +72,7 @@ object FrmRelatorios: TFrmRelatorios
         ParentFont = False
       end
       object Label4: TLabel
-        Left = -13
+        Left = 15
         Top = 53
         Width = 82
         Height = 18
@@ -84,8 +84,32 @@ object FrmRelatorios: TFrmRelatorios
         Font.Style = []
         ParentFont = False
       end
+      object LblIdColaborador: TLabel
+        Left = 103
+        Top = 53
+        Width = 17
+        Height = 18
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object lblColaborador: TLabel
+        Left = 126
+        Top = 53
+        Width = 114
+        Height = 18
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
       object dtpDataIniRelComi: TDateTimePicker
-        Left = 77
+        Left = 103
         Top = 93
         Width = 137
         Height = 27
@@ -101,7 +125,7 @@ object FrmRelatorios: TFrmRelatorios
         TabOrder = 0
       end
       object dtpDataFimRelComi: TDateTimePicker
-        Left = 77
+        Left = 103
         Top = 137
         Width = 137
         Height = 27
@@ -116,24 +140,8 @@ object FrmRelatorios: TFrmRelatorios
         ParentFont = False
         TabOrder = 1
       end
-      object DBComboBox1: TDBComboBox
-        Left = 77
-        Top = 50
-        Width = 137
-        Height = 26
-        DataField = 'nome'
-        DataSource = DataSource1
-        Enabled = False
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -15
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 2
-      end
       object CheckBox1: TCheckBox
-        Left = 220
+        Left = 246
         Top = 54
         Width = 77
         Height = 17
@@ -144,7 +152,7 @@ object FrmRelatorios: TFrmRelatorios
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        TabOrder = 3
+        TabOrder = 2
         OnClick = CheckBox1Click
       end
     end
@@ -167,7 +175,7 @@ object FrmRelatorios: TFrmRelatorios
   object Panel4: TPanel
     Left = 0
     Top = 0
-    Width = 318
+    Width = 345
     Height = 70
     TabOrder = 1
     object Label6: TLabel
@@ -289,7 +297,7 @@ object FrmRelatorios: TFrmRelatorios
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43381.723406400500000000
-    ReportOptions.LastChange = 43384.421976724540000000
+    ReportOptions.LastChange = 43394.994827523150000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'procedure Memo2OnBeforePrint(Sender: TfrxComponent);'
@@ -297,42 +305,41 @@ object FrmRelatorios: TFrmRelatorios
       ' // if Engine.FinalPass then'
       
         ' // Memo2.Text:= '#39'Sum:'#39'+FloatTostr(Get(<DsReportComissoes."valor' +
-        '">));                                                           ' +
-        '                                 '
+        '">));'
       'end;'
       ''
       'procedure Memo1OnBeforePrint(Sender: TfrxComponent);'
       'begin'
-      '  //set(<DsReportComissoes."valor">)              '
+      '  //set(<DsReportComissoes."valor">)'
       'end;'
       ''
       
         'procedure DsReportComissoescartaoOnAfterData(Sender: TfrxCompone' +
         'nt);'
       'begin'
-      ' '
-      '  '
+      ''
+      ''
       'end;'
       ''
       
         'procedure DsReportComissoescartaoOnAfterPrint(Sender: TfrxCompon' +
         'ent);'
       'begin'
-      '  '
+      ''
       'end;'
       ''
       
         'procedure DsReportComissoescartaoOnBeforePrint(Sender: TfrxCompo' +
         'nent);'
-      'begin '
-      '   '
+      'begin'
+      ''
       'end;'
       ''
       'begin'
       ''
       'end.')
-    Left = 32
-    Top = 196
+    Left = 24
+    Top = 212
     Datasets = <
       item
         DataSet = DsReportComissoes
@@ -1066,11 +1073,46 @@ object FrmRelatorios: TFrmRelatorios
         Top = 389.291590000000000000
         Width = 718.110700000000000000
         object Page: TfrxMemoView
-          Left = 638.740570000000000000
-          Width = 79.370130000000000000
+          Left = 653.858690000000000000
+          Width = 64.252010000000000000
           Height = 18.897650000000000000
           Memo.UTF8W = (
             '[Page]')
+        end
+        object Date: TfrxMemoView
+          Left = 75.590600000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          Memo.UTF8W = (
+            '[Date]')
+        end
+        object Memo13: TfrxMemoView
+          Left = 619.842920000000000000
+          Width = 34.015770000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haRight
+          Memo.UTF8W = (
+            'Pag.:')
+          ParentFont = False
+        end
+        object Memo14: TfrxMemoView
+          Left = -15.118120000000000000
+          Width = 90.708720000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haRight
+          Memo.UTF8W = (
+            'Tirado em:')
+          ParentFont = False
         end
       end
       object MasterData1: TfrxMasterData
@@ -1335,17 +1377,12 @@ object FrmRelatorios: TFrmRelatorios
     CloseDataSource = False
     DataSource = DSComissoes
     BCDToCurrency = False
-    Left = 32
-    Top = 148
+    Left = 24
+    Top = 156
   end
   object DSComissoes: TDataSource
     DataSet = DM.qry_vw_comissoes
     Left = 32
-    Top = 100
-  end
-  object DataSource1: TDataSource
-    DataSet = DM.colaborador
-    Left = 264
     Top = 100
   end
   object frxDBDataset1: TfrxDBDataset
@@ -1353,13 +1390,13 @@ object FrmRelatorios: TFrmRelatorios
     CloseDataSource = False
     DataSource = DataSource2
     BCDToCurrency = False
-    Left = 264
-    Top = 172
+    Left = 272
+    Top = 180
   end
   object DataSource2: TDataSource
     DataSet = DM.qry_vw_comissoes_colaborador
-    Left = 136
-    Top = 124
+    Left = 264
+    Top = 100
   end
   object frxReport1: TfrxReport
     Version = '5.4.6'
@@ -1370,7 +1407,7 @@ object FrmRelatorios: TFrmRelatorios
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43381.723406400500000000
-    ReportOptions.LastChange = 43384.421637592590000000
+    ReportOptions.LastChange = 43394.994211840280000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'procedure Memo2OnBeforePrint(Sender: TfrxComponent);'
@@ -2143,12 +2180,47 @@ object FrmRelatorios: TFrmRelatorios
         Height = 18.897650000000000000
         Top = 389.291590000000000000
         Width = 718.110700000000000000
-        object Page: TfrxMemoView
-          Left = 638.740570000000000000
+        object Date: TfrxMemoView
+          Left = 86.929190000000000000
           Width = 79.370130000000000000
           Height = 18.897650000000000000
           Memo.UTF8W = (
+            '[Date]')
+        end
+        object Page: TfrxMemoView
+          Left = 665.197280000000000000
+          Width = 52.913420000000000000
+          Height = 18.897650000000000000
+          Memo.UTF8W = (
             '[Page]')
+        end
+        object Memo13: TfrxMemoView
+          Left = 631.181510000000000000
+          Width = 34.015770000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haRight
+          Memo.UTF8W = (
+            'Pag.:')
+          ParentFont = False
+        end
+        object Memo14: TfrxMemoView
+          Left = -3.779530000000000000
+          Width = 90.708720000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haRight
+          Memo.UTF8W = (
+            'Tirado em:')
+          ParentFont = False
         end
       end
       object MasterData1: TfrxMasterData

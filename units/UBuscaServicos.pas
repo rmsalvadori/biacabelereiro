@@ -115,6 +115,8 @@ procedure TFrmBuscaServicos.FormShow(Sender: TObject);
 begin
   Left := (Screen.Width - Width) div 2;
   Top := (Screen.Height - Height) div 2;
+  DataSource1.DataSet.Filter := 'excluido = 0';
+  Edit1.Text:='';
 end;
 
 procedure TFrmBuscaServicos.TBSelecionarClick(Sender: TObject);

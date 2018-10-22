@@ -8,6 +8,7 @@ interface
        function atualizar1_0_1: boolean;
        function atualizar1_0_2: boolean;
        function atualizar1_1_2: boolean;
+       function atualizar1_2_3: boolean;
      public
        procedure atualizar;
   End;
@@ -237,6 +238,58 @@ begin
   Result := true;
 end;
 
+function TAtualizacoes.atualizar1_2_3: boolean;
+begin
+   with dm.qry_atualizacoes do
+  begin
+    close;
+    sql.Clear;
+    sql.Add(
+            'DROP VIEW vw_comissoes;                                                                      '+
+            '                                                                                             '+
+            'CREATE VIEW vw_comissoes (                                                                   '+
+            '    id,                                                                                      '+
+            '    valor,                                                                                   '+
+            '    cartao,                                                                                  '+
+            '    data,                                                                                    '+
+            '    cliente,                                                                                 '+
+            '    descri,                                                                                  '+
+            '    comis,                                                                                   '+
+            '    id_colaborador,                                                                          '+
+            '    colaborador,                                                                             '+
+            '    valor_comiss                                                                             '+
+            ')                                                                                            '+
+            'AS                                                                                           '+
+            '    SELECT v.id,                                                                             '+
+            '           iv.valor AS valor,                                                                '+
+            '           iv.cartao AS cartao,                                                              '+
+            '           v.data,                                                                           '+
+            '           CAST (v.cliente AS VARCHAR (200) ) AS cliente,                                    '+
+            '           CAST (s.descri AS VARCHAR (200) ) AS descri,                                      '+
+            '           iv.comis AS comis,                                                                '+
+            '           c.id AS id_colaborador,                                                           '+
+            '           CAST (c.nome AS VARCHAR (200) ) AS colaborador,                                   '+
+            '           CASE iv.cartao WHEN 1                                                             '+
+            '		     THEN (iv.valor * (1 - CAST (iv.perc_cartao AS FLOAT) / 100) ) * (iv.comis / 100)     '+
+            '			 ELSE iv.valor * (iv.comis / 100) END AS valor_comiss                                   '+
+            '      FROM venda v                                                                           '+
+            '           LEFT JOIN                                                                         '+
+            '           item_venda iv ON v.id = iv.id_venda                                               '+
+            '           LEFT JOIN                                                                         '+
+            '           servico s ON iv.id_servico = s.id                                                 '+
+            '           LEFT JOIN                                                                         '+
+            '           colaborador c ON iv.id_colaborador = c.id                                         '+
+            '     WHERE v.excluido = 0 AND                                                                '+
+            '           iv.excluido = 0                                                                   '+
+            '     ORDER BY colaborador,                                                                   '+
+            '              data;                                                                          '
+     );
+    Execute;
+  end;
+  alteraVersao('1.23');
+  Result := true;
+end;
+
 procedure TAtualizacoes.atualizar;
 // PRIMEIRO NUMERO SE REFERE A TOTALIZADOR DE FUNCIONALIDADE EX: 2 = 10 funcionalidades,
 // SEGUNDO NUMERO A INSERCAO DE FUNCIONALIDADES QUANDO CHEGA A 9 AUMENTA O PRIMEIRO NUMERO,
@@ -254,8 +307,10 @@ begin
       dm.mostraMsg('Erro ao atualizar para a versão 1.02');
   if 1.12 > strtofloat(StringReplace(dm.config2,'.',',',[rfReplaceAll, rfIgnoreCase])) then
     if not atualizar1_1_2 then
-      dm.mostraMsg('Erro ao atualizar para a versão 1.02');
-
+      dm.mostraMsg('Erro ao atualizar para a versão 1.12');
+  if 1.23 > strtofloat(StringReplace(dm.config2,'.',',',[rfReplaceAll, rfIgnoreCase])) then
+    if not atualizar1_2_3 then
+      dm.mostraMsg('Erro ao atualizar para a versão 1.23');
 end;
 
 end.

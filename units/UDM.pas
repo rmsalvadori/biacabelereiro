@@ -130,6 +130,8 @@ type
     WideStringField7: TWideStringField;
     FloatField3: TFloatField;
     BooleanField2: TBooleanField;
+    qry_vw_comissoes_colaboradorid_colaborador: TFDAutoIncField;
+    qry_vw_comissoesid_colaborador: TFDAutoIncField;
     procedure vw_item_venda2CalcFields(DataSet: TDataSet);
     procedure DataModuleCreate(Sender: TObject);
   private

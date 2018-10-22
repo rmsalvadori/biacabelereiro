@@ -24,13 +24,13 @@ type
     ReportComissoes: TfrxReport;
     DsReportComissoes: TfrxDBDataset;
     DSComissoes: TDataSource;
-    DBComboBox1: TDBComboBox;
     Label4: TLabel;
-    DataSource1: TDataSource;
     CheckBox1: TCheckBox;
     frxDBDataset1: TfrxDBDataset;
     DataSource2: TDataSource;
     frxReport1: TfrxReport;
+    LblIdColaborador: TLabel;
+    lblColaborador: TLabel;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -49,7 +49,7 @@ implementation
 
 {$R *.dfm}
 
-uses UDM;
+uses UDM, UBuscaColaborador;
 
 procedure TFrmRelatorios.Button1Click(Sender: TObject);
 begin
@@ -60,12 +60,12 @@ begin
 dm.qry_vw_comissoes_colaborador.sql.Clear;
 dm.qry_vw_comissoes_colaborador.SQL.add ( 'SELECT id,' +
                                         'valor,data,cliente,' +
-                                        'descri,comis,colaborador,' +
+                                        'descri,comis,id_colaborador, colaborador,' +
                                         'valor_comiss as "valor_comiss::FLOAT",cartao ' +
                                         'FROM vw_comissoes where data between ' +
                                         quotedstr(formatdatetime('yyyy-mm-dd', dtpDataIniRelComi.Date)) +
                                         'and ' + quotedstr(formatdatetime('yyyy-mm-dd', dtpDataFimRelComi.Date))  +
-                                        'and colaborador like ' + quotedstr(DataSource1.DataSet.FieldByName('nome').AsString));
+                                        'and id_colaborador = ' + LblIdColaborador.Caption);
 
 dm.qry_vw_comissoes_colaborador.Open;
 frxReport1.PrepareReport;
@@ -88,9 +88,21 @@ end;
 procedure TFrmRelatorios.CheckBox1Click(Sender: TObject);
 begin
 if CheckBox1.Checked then
-DBComboBox1.Enabled:= true
+  begin
+    if FrmBuscaColaborador.ShowModal = mrOk then
+      begin
+         LblIdColaborador.Caption := dm.colaborador.FieldByName('id').AsString;
+         lblColaborador.Caption := dm.colaborador.FieldByName('nome').AsString;
+      end
+    else
+    CheckBox1.Checked := false;
+  end
 else
-DBComboBox1.Enabled:= false;
+  begin
+   LblIdColaborador.Caption := '';
+   lblColaborador.Caption := '';
+  end;
+
 
 end;
 

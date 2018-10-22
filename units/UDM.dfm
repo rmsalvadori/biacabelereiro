@@ -549,7 +549,6 @@ object DM: TDM
     end
   end
   object qry_vw_comissoes: TFDQuery
-    Active = True
     AggregatesActive = True
     Connection = FDConnection1
     FetchOptions.AssignedValues = [evMode, evRowsetSize, evAutoFetchAll]
@@ -557,8 +556,9 @@ object DM: TDM
     FetchOptions.RowsetSize = -1
     SQL.Strings = (
       
-        'SELECT id, valor,data,cliente,descri,comis,colaborador,valor_com' +
-        'iss as "valor_comiss::FLOAT",cartao FROM vw_comissoes'
+        'SELECT id, valor,data,cliente,descri,comis,id_colaborador,colabo' +
+        'rador,valor_comiss as "valor_comiss::FLOAT",cartao FROM vw_comis' +
+        'soes'
       'where data between :dataini and :datafim')
     Left = 320
     Top = 264
@@ -621,6 +621,11 @@ object DM: TDM
       FieldName = 'cartao'
       Origin = 'cartao'
       Required = True
+    end
+    object qry_vw_comissoesid_colaborador: TFDAutoIncField
+      FieldName = 'id_colaborador'
+      Origin = 'id_colaborador'
+      ProviderFlags = [pfInWhere, pfInKey]
     end
   end
   object venda: TFDTable
@@ -793,8 +798,9 @@ object DM: TDM
     FetchOptions.RowsetSize = -1
     SQL.Strings = (
       
-        'SELECT id, valor,data,cliente,descri,comis,colaborador,valor_com' +
-        'iss as "valor_comiss::FLOAT",cartao FROM vw_comissoes'
+        'SELECT id, valor,data,cliente,descri,comis,id_colaborador, colab' +
+        'orador,valor_comiss as "valor_comiss::FLOAT",cartao FROM vw_comi' +
+        'ssoes'
       'where data between :dataini and :datafim')
     Left = 320
     Top = 320
@@ -857,6 +863,11 @@ object DM: TDM
       FieldName = 'cartao'
       Origin = 'cartao'
       Required = True
+    end
+    object qry_vw_comissoes_colaboradorid_colaborador: TFDAutoIncField
+      FieldName = 'id_colaborador'
+      Origin = 'id_colaborador'
+      ProviderFlags = [pfInWhere, pfInKey]
     end
   end
 end

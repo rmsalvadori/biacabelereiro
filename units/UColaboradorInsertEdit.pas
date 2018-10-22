@@ -88,8 +88,17 @@ end;
 
 procedure TFrmColaboradorInsertEdit.TBSalvarClick(Sender: TObject);
 begin
-  DataSource1.DataSet.Post;
-  ModalResult := mrOk;
+  if DBEdit2.Text = '' then
+    begin
+      MessageDlg('O Nome não pode ser em branco',mtError,[mbOK],0);
+      DBEdit2.SetFocus;
+    end
+  else
+    begin
+      DataSource1.DataSet.Post;
+      ModalResult := mrOk;
+    end;
+
 end;
 
 end.
